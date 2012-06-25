@@ -33,11 +33,11 @@ package jp.co.piisu.sample.starling.multi_resolution
 				var scale_factor:Number = Starling.current.contentScaleFactor;
 				
 				if(scale_factor == 1) {
-					bg = createImage(BG1);
-					kurage = createImage(KURAGE1);
+					bg = createImage(BG1, 1);
+					kurage = createImage(KURAGE1, 1);
 				} else if(scale_factor <= 2) {
-					bg = createImage(BG2);
-					kurage = createImage(KURAGE2);
+					bg = createImage(BG2, 2);
+					kurage = createImage(KURAGE2, 2);
 				} else throw new Error("このサンプルは、ScaleFactorが2より大きい場合には対応していません");
 				
 				addChild(bg);
@@ -48,8 +48,8 @@ package jp.co.piisu.sample.starling.multi_resolution
 			});
 		}
 		
-		private function createImage(bitmap_class:Class):Image {
-			return new Image( Texture.fromBitmap(new bitmap_class(), true, false, Starling.current.contentScaleFactor) ) ;
+		private function createImage(bitmap_class:Class, scale_factor:Number):Image {
+			return new Image( Texture.fromBitmap(new bitmap_class(), true, false, scale_factor) ) ;
 		}
 		
 	}
