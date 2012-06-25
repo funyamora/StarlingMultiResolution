@@ -32,7 +32,7 @@ package
 				var kurage:Image;
 				var scale_factor:Number = Starling.current.contentScaleFactor;
 				
-				// ScaleFactorに応じた画像を読み込み作成する
+				// ScaleFactorに応じた画像を読み込む
 				if(scale_factor == 1) {
 					bg = createImage(BG1, 1);
 					kurage = createImage(KURAGE1, 1);
