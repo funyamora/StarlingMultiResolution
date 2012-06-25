@@ -5,7 +5,6 @@ package
 	import flash.display.StageScaleMode;
 	import flash.geom.Rectangle;
 	
-	import jp.co.piisu.sample.starling.multi_resolution.MainSprite;
 	
 	import starling.core.Starling;
 	
@@ -21,14 +20,16 @@ package
 			stage.align = StageAlign.TOP_LEFT;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			
+			// フルスクリーンの際の縦横幅を取得
 			var screenWidth:int  = stage.fullScreenWidth;
 			var screenHeight:int = stage.fullScreenHeight;
 			
+			
+			// ゲーム画面が縦横比を維持しつつ、スクリーンにフィットするようにViewportの縦横幅を算出する
+			var viewport:Rectangle = new Rectangle();
 			var stage_aspect_ratio:Number = STAGE_HEIGHT / STAGE_WIDTH;
 			var screen_aspect_ration:Number = screenHeight / screenWidth;
-			var viewport:Rectangle = new Rectangle();
 			
-			trace(stage_aspect_ratio + " , " + screen_aspect_ration); 
 			if(stage_aspect_ratio < screen_aspect_ration) {
 				//ステージの縦横比に比べると縦長
 				viewport.width = screenWidth;
@@ -43,9 +44,10 @@ package
 				viewport.height = screenHeight;
 			}
 			
-			trace(viewport.width + "," + viewport.height);
+			//ゲーム画面がセンタリングされるように位置調整
 			viewport.x = int( (screenWidth - viewport.width) / 2);
 			viewport.y = int( (screenHeight - viewport.height) / 2);
+			
 			
 			var st:Starling = new Starling(MainSprite, stage, viewport);
 			st.stage.stageWidth  = STAGE_WIDTH;
